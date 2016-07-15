@@ -1,0 +1,11 @@
+{
+  "name": "dijkstra-shortest-path",
+  "version": "1.0.0",
+  "description": "Computing Dijkstra's shortest-path algorithm on undirected weighted graph.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests.js"
+  },
+  "author": "Nick Serebrennikov",
+  "license": "MIT"
+}
