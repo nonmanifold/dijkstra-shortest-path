@@ -20,12 +20,12 @@ rl.on('close', function () {
     console.log('Attempting to count Dijkstra\'s shortest-path algorithm on graph with ' + Object.keys(nodes).length + ' nodes, and ' + numEdges + ' edges');
     setImmediate(function () {
         const endPoints = [7, 37, 59, 82, 99, 115, 133, 165, 188, 197];
-        const distances = [];
-        const paths = dijkstra.findShortestPaths(nodes, 1);
+        const distancesForTargetVers = [];
+        const distances = dijkstra.findDistances(nodes, 1);
         endPoints.forEach(function (endpoint) {
-            var pathLen = paths.hasOwnProperty(endpoint) ? paths[endpoint] : 1000000;
-            distances.push(pathLen);
+            var pathLen = distances.hasOwnProperty(endpoint) ? distances[endpoint] : 1000000;
+            distancesForTargetVers.push(pathLen);
         });
-        console.log('distances: ' + distances.join(','));
+        console.log('distances: ' + distancesForTargetVers.join(','));
     });
 });
