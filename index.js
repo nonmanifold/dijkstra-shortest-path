@@ -4,7 +4,7 @@ const path = require('path');
 const fileName = '_dcf1d02570e57d23ab526b1e33ba6f12_dijkstraData.txt';
 const pathName = path.join('./', fileName);
 const dijkstra = require('./dijkstra');
-
+const addEdge=dijkstra.addEdge;
 const nodes = {};
 var numEdges = 0;
 
@@ -13,12 +13,21 @@ const rl = readline.createInterface({
 });
 
 rl.on('line', function (line) {
-    const row = line.split(" ");
-    const vertTail = parseInt(row[0], 10);
-    const vertHead = parseInt(row[1], 10);
-    if (addEdge(nodes, vertTail, vertHead)) {
-        numEdges++;
+    const row = line.split("\t");
+    row.pop();
+    const vLabel = parseInt(row.shift(),10);
+    if(isNaN(vLabel)){
+        return;
     }
+    row.forEach(function (entry) {
+        const vertAndLength = entry.split(',');
+        const vertHead = parseInt(vertAndLength[0], 10);
+        const edgeLength = parseInt(vertAndLength[1], 10);
+        if (addEdge(nodes, vLabel, vertHead, edgeLength)) {
+            numEdges++;
+        }
+    });
+
 });
 
 rl.on('close', function () {
